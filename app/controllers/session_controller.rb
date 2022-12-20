@@ -11,7 +11,8 @@ class SessionController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to root_path
     else
-      redirect_to session_login_path, alert: 'Неверный логин или пароль'
+      flash[:alert] = user.nil? ? 'Неправильный логин' : 'Неправильный пароль'
+      redirect_to session_login_path
     end
   end
 
