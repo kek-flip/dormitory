@@ -1,13 +1,10 @@
 class CreateStaffs < ActiveRecord::Migration[7.0]
   def change
     create_table :staffs do |t|
-      t.integer :user_id, null: false
+      t.belongs_to :user
       t.string :rank, null: false
 
       t.timestamps
     end
-
-    add_foreign_key :staffs, :users
-    add_index :staffs, :user_id, unique: true
   end
 end
