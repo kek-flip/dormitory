@@ -1,0 +1,2 @@
+class CouncilMember < ApplicationRecord
+end
