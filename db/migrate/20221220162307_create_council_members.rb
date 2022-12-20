@@ -9,5 +9,6 @@ class CreateCouncilMembers < ActiveRecord::Migration[7.0]
     end
 
     add_foreign_key :council_members, :students
+    add_index :council_members, :student_id, unique: true
   end
 end

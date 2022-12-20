@@ -8,5 +8,6 @@ class CreateStaffs < ActiveRecord::Migration[7.0]
     end
 
     add_foreign_key :staffs, :users
+    add_index :staffs, :user_id, unique: true
   end
 end

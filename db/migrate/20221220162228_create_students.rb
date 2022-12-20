@@ -8,5 +8,6 @@ class CreateStudents < ActiveRecord::Migration[7.0]
     end
 
     add_foreign_key :students, :users
+    add_index :students, :user_id, unique: true
   end
 end
