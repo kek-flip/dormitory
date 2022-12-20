@@ -1,2 +1,68 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :login, 'Логин: ' %>
+    <%= form.text_field :login %>
+  </div>
+
+  <div>
+    <%= form.label :password, 'Пароль: ' %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, 'Повторите пароль: ' %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= form.label :name, 'Имя: ' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :surname, 'Фамилия: ' %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div>
+    <%= form.label :second_name, 'Отчество: ' %>
+    <%= form.text_field :second_name %>
+  </div>
+
+  <div>
+    <%= form.radio_button :user_type, 'student' %>
+    <%= form.label :side, 'Зарегистрироваться как студент' %>
+    <br>
+    <%= form.radio_button :user_type, 'staff' %>
+    <%= form.label :side, 'Зарегистрироваться как сотрудник' %>
+  </div>
+
+  <div>
+    <%= form.label :room, 'Комната: ' %>
+    <%= form.text_field :room %>
+  </div>
+
+  <div>
+    <%= form.label :rank, 'Должность: ' %>
+    <%= form.text_field :rank %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
