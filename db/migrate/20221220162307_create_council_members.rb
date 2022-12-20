@@ -3,7 +3,7 @@ class CreateCouncilMembers < ActiveRecord::Migration[7.0]
     create_table :council_members do |t|
       t.integer :student_id, null: false
       t.string :rank, null: false
-      t.integer :floor
+      t.integer :floor, default: nil
 
       t.timestamps
     end
