@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :parse_user_type, only: :create
   skip_before_action :authenticate, only: %i[new create]
