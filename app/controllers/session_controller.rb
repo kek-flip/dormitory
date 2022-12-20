@@ -6,11 +6,12 @@ class SessionController < ApplicationController
   def login; end
 
   def create
-    if user = User.authenticate(params[:login], params[:password])
+    user = User.find_by_login(params[:login])
+    if user&.authenticate(params[:password])
       session[:current_user_id] = user.id
-      redirect_to '/'  # Перенаправить на главную
+      redirect_to root_path
     else
-      redirect_to session_login_path, message: 'Неверный логин или пароль'
+      redirect_to session_login_path, alert: 'Неверный логин или пароль'
     end
   end
 
