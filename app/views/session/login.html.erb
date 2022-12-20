@@ -8,7 +8,7 @@
 <h2>Авторизация</h2>
 <br>
 <br>
-<%= form_with url: sessions_create_path, method: :post, local: true do |form| %>
+<%= form_with url: session_create_path, method: :post, local: true do |form| %>
     <%= form.label :login, 'Логин: ' %>
     <%= form.text_field :login, require: true %>
     <br>
@@ -21,4 +21,4 @@
 <% end %>
 <br>
 <br>
-<%= link_to 'Регистрация', # Ссылка на регистраци. %>
+<%= link_to 'Регистрация', users_new_path %>
