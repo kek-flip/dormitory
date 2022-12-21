@@ -1,1 +1,17 @@
-<h1>LKS</h1>
+<nav>
+    <a href="/">Главная</a>
+    <ul >
+        <li>
+            <a href="/news">Новости</a>
+        </li>
+        <li>
+            <a href="/forms">Опросы</a>
+        </li>
+    </ul>
+    <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
+</nav>
+<h2>Личные данные</h2>
+<p>Фамилия: <%= @_current_user.surname %></p>
+<p>Имя: <%= @_current_user.name %></p>
+<p>Отчество: <%= @_current_user.second_name %></p>
+<%= link_to 'Выйти', session_logout_path %>
