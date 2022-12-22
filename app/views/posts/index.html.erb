@@ -1,15 +1,24 @@
-<nav>
-    <a href="/">Главная</a>
-    <ul >
-        <li>
-            <a href="/posts">Новости</a>
-        </li>
-        <li>
-            <a href="/forms">Опросы</a>
-        </li>
-    </ul>
-    <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
-</nav>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">МоeОбщежитие</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'Главная', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Новости', posts_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/forms">Опросы</a>
+          </li>
+        </ul>
+        <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
+      </div>
+    </div>
+  </nav>
+</header>
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
 
