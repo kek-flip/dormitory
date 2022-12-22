@@ -30,7 +30,7 @@
 
 <article class="m-3">
 
-    <% @posts.each do |post| %>
+    <% @posts.order(created_at: :desc).each do |post| %>
         <div class="row">
             <article class="border border-2 col-8 m-3">
                 <%= render post %>
