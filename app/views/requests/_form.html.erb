@@ -12,6 +12,26 @@
   <% end %>
 
   <div>
+    <%= form.label :floor, 'Сотрудник' %>
+    <%= form.select :staff_id, Staff.order(:rank).map { |staff| [staff.rank, staff.id] } %>
+  </div>
+
+  <div>
+    <%= form.label :floor, 'Этаж' %>
+    <%= form.select :floor, ['2', '3', '4', '5', '6', '7', '8'], select: '2' %>
+  </div>
+
+  <div>
+    <%= form.label :location, 'Место: ' %>
+    <%= form.text_area :location, require: true %>
+  </div>
+
+  <div>
+    <%= form.label :problem, 'Проблема: ' %>
+    <%= form.text_area :problem, require: true %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

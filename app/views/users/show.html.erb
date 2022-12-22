@@ -1,17 +1,43 @@
 <nav>
-    <a href="/">Главная</a>
-    <ul >
-        <li>
-            <a href="/posts">Новости</a>
-        </li>
-        <li>
-            <a href="/forms">Опросы</a>
-        </li>
-    </ul>
-    <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
+  <a href="/">Главная</a>
+  <ul >
+    <li>
+      <a href="/posts">Новости</a>
+    </li>
+    <li>
+      <a href="/forms">Опросы</a>
+    </li>
+  </ul>
+  <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
 </nav>
-<h2>Личные данные</h2>
-<p>Фамилия: <%= @_current_user.surname %></p>
-<p>Имя: <%= @_current_user.name %></p>
-<p>Отчество: <%= @_current_user.second_name %></p>
-<%= link_to 'Выйти', session_logout_path %>
+<div>
+  <h2>Личные данные</h2>
+  <p>Фамилия: <%= @_current_user.surname %></p>
+  <p>Имя: <%= @_current_user.name %></p>
+  <p>Отчество: <%= @_current_user.second_name %></p>
+  <%= link_to 'Выйти', session_logout_path %>
+</div>
+
+<% if @_user_access == ApplicationController::STAFF %>
+  <h3>Заявки</h3>
+  <div id="requests">
+  <% Request.all.each do |request| %>
+    <% if request.staff_id == @_current_user_role.id %>
+      <%= render request %>
+      <p>
+        <%= link_to "Открыть", request %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+<% end %>
+
+<% if @_user_access >= ApplicationController::STUDENT %>
+  <%= link_to "Отправить заявку", new_request_path %>
+  <div id="requests">
+  <% Request.all.each do |request| %>
+    <% if request.student_id == Student.find_by_user_id(@_current_user.id).id%>
+      <p><%= render request %></p>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,3 +1,15 @@
+<nav>
+  <a href="/">Главная</a>
+  <ul >
+    <li>
+      <a href="/posts">Новости</a>
+    </li>
+    <li>
+      <a href="/forms">Опросы</a>
+    </li>
+  </ul>
+  <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
+</nav>
 <p style="color: green"><%= notice %></p>
 
 <h1>Requests</h1>
@@ -6,7 +18,7 @@
   <% @requests.each do |request| %>
     <%= render request %>
     <p>
-      <%= link_to "Show this request", request %>
+      <%= link_to "Открыть", request %>
     </p>
   <% end %>
 </div>

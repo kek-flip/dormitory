@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   # 1 - Студсовет
   # 2 - Работник
 
-  STUDENT = 0
-  COUNCIL_MEMBER = 1
-  STAFF = 2
+  STUDENT = 1
+  COUNCIL_MEMBER = 2
+  STAFF = 0
 
   def current_user
     @_current_user ||= session[:current_user_id] &&
@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
       @_current_user_role = staff
       @_user_access = STAFF
     elsif !student.nil?
+      @_current_user_role = student
       @_user_access = STUDENT
     end
     @_user_access
