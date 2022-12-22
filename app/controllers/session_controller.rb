@@ -19,6 +19,8 @@ class SessionController < ApplicationController
   def logout
     session.delete(:current_user_id)
     @_current_user = nil
+    @_user_access = nil
+    @_current_user_role = nil
     redirect_to session_login_path
   end
 end
