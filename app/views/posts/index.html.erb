@@ -1,14 +1,29 @@
+<nav>
+    <a href="/">Главная</a>
+    <ul >
+        <li>
+            <a href="/posts">Новости</a>
+        </li>
+        <li>
+            <a href="/forms">Опросы</a>
+        </li>
+    </ul>
+    <%= link_to 'Личный кабинет', '/users/' + @_current_user.login %>
+</nav>
 <p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
+  <%= link_to "Добавить новость", new_post_path %>
+<% end %>
 
 <h1>Posts</h1>
 
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
+    <h3><%= post.title %></h3>
     <p>
-      <%= link_to "Show this post", post %>
+      <%= link_to "Открыть новость", post %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>

@@ -12,6 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :title, 'Заголовок' %>
+    <%= form.text_field :title, require: true %>
+  </div>
+
+  <div>
+    <%= form.label :text, 'Текст' %>
+    <%= form.text_area :text, require: true %>
+  </div>
+
+  <div>
+    <%= form.submit value: 'Добавить новость' %>
   </div>
 <% end %>
