@@ -33,8 +33,7 @@
     <% @posts.each do |post| %>
         <div class="row">
             <article class="border border-2 col-8 m-3">
-                <h3><%= post.title %></h3>
-                <p><%= post.text %></p>
+                <%= render post %>
 
                 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
                     <p><%= link_to 'Редактировать', post, class: 'col-1' %></p>
