@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row text-center">
     <div class="col-4"></div>
     <div class="col-4">
-        <h2 class="text-center">Добро пожаловать!</h2>
-        <h2 class="text-center">Войдите, чтобы продолжить</h2>
+        <h1 class="h3 mb-3 font-weight-normal">Добро пожаловать!</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Войдите, чтобы продолжить</h1>
         <% flash.each do |_, msg| %>
             <h3 class="text-center" style="color: red"><%= msg %></h3>
         <% end %>
-        <%= form_with url: session_create_path, method: :post, local: true do |form| %>
+        <%= form_with url: session_create_path, method: :post, local: true, class: 'form-signin' do |form| %>
             <div class="mb-3">
                 <%= form.label :login, 'Логин: ' , class: 'form-label' %>
                 <%= form.text_field :login, require: true, class: 'form-control' %>

@@ -1,38 +1,46 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">МоeОбщежитие</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to 'Главная', root_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Новости', posts_path, class: 'nav-link active' %>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/forms">Опросы</a>
-          </li>
-        </ul>
-        <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">МоeОбщежитие</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <%= link_to 'Главная', root_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'Новости', posts_path, class: 'nav-link active' %>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/forms">Опросы</a>
+                </li>
+                </ul>
+                <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
+            </div>
+        </div>
+    </nav>
 </header>
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
 
 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
-  <%= link_to "Добавить новость", new_post_path %>
+    <%= link_to "Добавить новость", new_post_path, class: 'btn btn-primary col-auto m-3' %>
 <% end %>
 
-<h1>Posts</h1>
+<h1 class="m-3">Новости</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <h3><%= post.title %></h3>
-    <p>
-      <%= link_to "Открыть новость", post %>
-    </p>
-  <% end %>
-</div>
+<article class="m-3">
+
+    <% @posts.each do |post| %>
+        <div class="row">
+            <article class="border border-2 col-8 m-3">
+                <h3><%= post.title %></h3>
+                <p><%= post.text %></p>
+
+                <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
+                    <p><%= link_to 'Редактировать', post, class: 'col-1' %></p>
+                <% end %>
+            </article>
+        </div>
+    <% end %>
+
+</article>
