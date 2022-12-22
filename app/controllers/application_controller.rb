@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user_access
-    council_member = CouncilMember.find_by_student_id(Student.find_by_user_id(current_user.id).id)
+    student = Student.find_by_user_id(current_user.id)
+    council_member = CouncilMember.find_by_student_id(student.id) unless student.nil?
     staff = Staff.find_by_user_id(current_user.id)
     if !council_member.nil?
       @_current_user_role = council_member
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::Base
     elsif !staff.nil?
       @_current_user_role = staff
       @_user_access = STAFF
-    else
+    elsif !student.nil?
       @_user_access = STUDENT
     end
     @_user_access
