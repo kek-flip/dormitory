@@ -1,9 +1,11 @@
-<h1>New post</h1>
+<div class="row m-1">
+    <h2>Добавить новость</h2>
+</div>
 
 <%= render "form", post: @post %>
 
 <br>
 
-<div>
-  <%= link_to "Назад к новостям", posts_path %>
+<div class="m-4">
+  <%= link_to "Назад к новостям", posts_path, class: 'btn btn-primary col-md-2' %>
 </div>
