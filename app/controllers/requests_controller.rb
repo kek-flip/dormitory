@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[ show edit update destroy ]
-  before_action :staff?, only: %i[ index show ]
+  before_action :set_request, only: %i[ show edit update destroy update_status_to_took update_status_to_finished ]
+  before_action :staff?, only: %i[ index show update_status_to_took update_status_to_finished ]
   before_action :student?, only: %i[ new create ]
 
   # GET /requests or /requests.json
@@ -53,6 +53,16 @@ class RequestsController < ApplicationController
       format.html { redirect_to requests_url, notice: "Request was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def update_status_to_took
+    @request.update(status:'В работе')
+    redirect_to '/users/' + @_current_user.login
+  end
+
+  def update_status_to_finished
+    @request.update(status:'Завершена')
+    redirect_to '/users/' + @_current_user.login
   end
 
   private

@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_093959) do
     t.integer "floor", null: false
     t.string "location", null: false
     t.string "problem", null: false
+    t.string "status", default: "Не рассмотрено", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["staff_id"], name: "index_requests_on_staff_id"

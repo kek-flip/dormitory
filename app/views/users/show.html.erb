@@ -1,53 +1,79 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">МоeОбщежитие</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to 'Главная', root_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Новости', posts_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/forms">Опросы</a>
-          </li>
-        </ul>
-        <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">МоeОбщежитие</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to 'Главная', root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Новости', posts_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forms">Опросы</a>
+                    </li>
+                </ul>
+                <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
+            </div>
+        </div>
+    </nav>
 </header>
 
-<div>
-  <h2>Личные данные</h2>
-  <p>Фамилия: <%= @_current_user.surname %></p>
-  <p>Имя: <%= @_current_user.name %></p>
-  <p>Отчество: <%= @_current_user.second_name %></p>
-  <%= link_to 'Выйти', session_logout_path %>
+<div class="row mt-3 container">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <h2>Пользователь</h2>
+        <p>Фамилия: <%= @_current_user.surname %></p>
+        <p>Имя: <%= @_current_user.name %></p>
+        <p>Отчество: <%= @_current_user.second_name %></p>
+        <%= link_to 'Выйти', session_logout_path, class: 'btn btn-primary col-md-4' %>
+    </div>
+
+    <div class="col-5 border border-1">
+        <!-- Заявки для студентов -->
+        <% if @_user_access >= ApplicationController::STUDENT %>
+            <h3 class="text-center">Мои заявки</h3>
+            <%= link_to "Отправить заявку", new_request_path, class: 'btn btn-primary col-md-12' %>
+            <% Request.all.each do |request| %>
+                <% if request.student_id == Student.find_by_user_id(@_current_user.id).id%>
+                    <p><%= render request %></p>
+                <% end %>
+            <% end %>
+        <% end %>
+
+        <!-- Заявки для работников -->
+        <% if @_user_access == ApplicationController::STAFF %>
+            <h3>Заявки</h3>
+            <% Request.all.each do |request| %>
+                <% if request.staff_id == @_current_user_role.id && request.status != 'Завершена' %>
+                    <div class="row">
+                        <div class="col-6">
+                            <p>Этаж:  <%= request.floor%></p>
+                            <p>Место: <%= request.location %></p>
+                            <p>Проблема: <%= request.problem %></p>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center mt-3">
+                                <% if request.status == 'Не рассмотрено' %>
+                                    <%= form_with(url: request_update_take_path, method: :get) do |form| %>
+                                        <input type="text" value="<%= request.id %>" name="id" style="visibility: hidden">
+                                        <%= form.submit value: 'Взять', class: 'btn btn-primary' %>
+                                    <% end %>
+                                <% end %>
+                                <% if request.status == 'В работе' %>
+                                    <%= form_with(url: request_update_finish_path, method: :get) do |form| %>
+                                        <input type="text" value="<%= request.id %>" name="id" style="visibility: hidden">
+                                        <%= form.submit value: 'Завершить', class: 'btn btn-primary' %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
 </div>
 
-<% if @_user_access == ApplicationController::STAFF %>
-  <h3>Заявки</h3>
-  <div id="requests">
-  <% Request.all.each do |request| %>
-    <% if request.staff_id == @_current_user_role.id %>
-      <%= render request %>
-      <p>
-        <%= link_to "Открыть", request %>
-      </p>
-    <% end %>
-  <% end %>
-</div>
-<% end %>
 
-<% if @_user_access >= ApplicationController::STUDENT %>
-  <%= link_to "Отправить заявку", new_request_path %>
-  <div id="requests">
-  <% Request.all.each do |request| %>
-    <% if request.student_id == Student.find_by_user_id(@_current_user.id).id%>
-      <p><%= render request %></p>
-    <% end %>
-  <% end %>
-<% end %>
