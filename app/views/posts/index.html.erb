@@ -19,8 +19,6 @@
         </div>
     </nav>
 </header>
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
 
 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
     <%= link_to "Добавить новость", new_post_path, class: 'btn btn-primary col-auto m-3' %>

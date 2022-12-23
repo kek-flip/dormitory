@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
 
     if @request.save
-      redirect_to '/users/' + @_current_user.login, notice: "Request was successfully created."
+      redirect_to '/users/' + @_current_user.login
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,14 +34,10 @@ class RequestsController < ApplicationController
 
   # PATCH/PUT /requests/1 or /requests/1.json
   def update
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to request_url(@request), notice: "Request was successfully updated." }
-        format.json { render :show, status: :ok, location: @request }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
+    if @request.update(request_params)
+      redirect_to '/users/' + @_current_user.login
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

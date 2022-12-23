@@ -1,10 +1,9 @@
-<h1>Editing request</h1>
+<h1>Редактировать</h1>
 
 <%= render "form", request: @request %>
 
 <br>
 
-<div>
-  <%= link_to "Show this request", @request %> |
-  <%= link_to "Вернуться в личный кабинет", '/users/' + @_current_user.login %>
+<div class="m-4">
+  <%= link_to "Вернуться в личный кабинет", '/users/' + @_current_user.login, class: 'btn btn-primary col-md-2' %>
 </div>
