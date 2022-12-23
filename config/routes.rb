@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'session/create'
   get 'session/logout'
 
-  resources :posts
+  resources :posts, only: [ :index, :edit, :update, :new ]
 
   resources :requests
   get 'request/update/take', to: 'requests#update_status_to_took'

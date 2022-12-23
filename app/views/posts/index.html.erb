@@ -36,7 +36,7 @@
                 <%= render post %>
 
                 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
-                    <p><%= link_to 'Редактировать', post, class: 'col-1' %></p>
+                    <p><%= link_to 'Редактировать', edit_post_path(post), class: 'col-1' %></p>
                 <% end %>
             </article>
         </div>
