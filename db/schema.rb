@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_093959) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_23_121502) do
   create_table "council_members", force: :cascade do |t|
     t.integer "student_id"
     t.string "rank", null: false
@@ -18,6 +18,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_093959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_council_members_on_student_id"
+  end
+
+  create_table "poll_answers", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "poll_id"
+    t.string "answers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_poll_answers_on_poll_id"
+    t.index ["student_id"], name: "index_poll_answers_on_student_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.integer "council_member_id"
+    t.string "title", null: false
+    t.string "questions", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["council_member_id"], name: "index_polls_on_council_member_id"
   end
 
   create_table "posts", force: :cascade do |t|
