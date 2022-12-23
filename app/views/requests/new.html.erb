@@ -1,9 +1,11 @@
-<h1>New request</h1>
+<div class="row m-1">
+    <h2>Отправить заявку</h2>
+</div>
 
 <%= render "form", request: @request %>
 
 <br>
 
-<div>
-  <%= link_to "Вернуться в личный кабинет", '/users/' + @_current_user.login %>
+<div class="m-4">
+  <%= link_to "Вернуться в личный кабинет", '/users/' + @_current_user.login, class: 'btn btn-primary col-md-2' %>
 </div>
