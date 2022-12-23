@@ -6,9 +6,10 @@
             <p>Проблема: <%= request.problem %></p>
         </div>
         <div class="col-6">
-            <div class="text-center mt-3">
+            <div class="text-center">
                 <p><%= request.status %></p>
                 <%= link_to 'Редактировать', edit_request_path(request) %>
+                <%= button_to "Удалить заявку", request, method: :delete, class: 'btn btn-primary col-md-10 mt-2' %>
             </div>
         </div>
     </div>

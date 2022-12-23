@@ -45,10 +45,7 @@ class RequestsController < ApplicationController
   def destroy
     @request.destroy
 
-    respond_to do |format|
-      format.html { redirect_to requests_url, notice: "Request was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to '/users/' + @_current_user.login
   end
 
   def update_status_to_took

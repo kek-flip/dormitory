@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [ :index, :edit, :update, :new ]
 
-  resources :requests, only: [ :edit, :update, :new, :create ]
+  resources :requests, only: [ :edit, :update, :new, :create, :destroy ]
   get 'request/update/take', to: 'requests#update_status_to_took'
   get 'request/update/finish', to: 'requests#update_status_to_finished'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

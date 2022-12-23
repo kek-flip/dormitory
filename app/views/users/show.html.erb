@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">МоeОбщежитие</a>
+            <a class="navbar-brand" href="#">МоёОбщежитие</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -10,9 +10,9 @@
                     <li class="nav-item">
                         <%= link_to 'Новости', posts_path, class: 'nav-link' %>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/forms">Опросы</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
             </div>
@@ -44,7 +44,7 @@
 
         <!-- Заявки для работников -->
         <% if @_user_access == ApplicationController::STAFF %>
-            <h3>Заявки</h3>
+            <h3 class="text-center">Заявки</h3>
             <% Request.all.each do |request| %>
                 <% if request.staff_id == @_current_user_role.id && request.status != 'Завершена' %>
                     <div class="row">
