@@ -3,9 +3,8 @@
     <div class="col-4">
         <h1 class="h3 mb-3 font-weight-normal">Добро пожаловать!</h1>
         <h1 class="h3 mb-3 font-weight-normal">Войдите, чтобы продолжить</h1>
-        <% flash.each do |_, msg| %>
-            <h3 class="text-center" style="color: red"><%= msg %></h3>
-        <% end %>
+        <h3 class="text-center" style="color: green"><%= notice %></h3>
+        <h3 class="text-center" style="color: red"><%= alert %></h3>
         <%= form_with url: session_create_path, method: :post, local: true, class: 'form-signin' do |form| %>
             <div class="mb-3">
                 <%= form.label :login, 'Логин: ' , class: 'form-label' %>

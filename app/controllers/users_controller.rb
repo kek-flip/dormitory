@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       staff = Staff.new(user_id: @user.id, rank: params[:user][:rank])
       student.save if @user_type == 'student' && student.valid?
       staff.save if @user_type == 'staff' && staff.valid?
-      redirect_to session_login_path, notice: 'Пользователь успешно создан.'
+      redirect_to session_login_path, notice: 'Пользователь успешно создан'
     else
       render :new, status: :unprocessable_entity
     end
