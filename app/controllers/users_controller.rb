@@ -11,11 +11,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      student = Student.new(user_id: @user.id, room: params[:user][:room])
-      staff = Staff.new(user_id: @user.id, rank: params[:user][:rank])
-      student.save if @user_type == 'student' && student.valid?
-      staff.save if @user_type == 'staff' && staff.valid?
-      redirect_to session_login_path, notice: 'Пользователь успешно создан'
+      @student = Student.new(user_id: @user.id, room: params[:user][:room])
+      @staff = Staff.new(user_id: @user.id, rank: params[:user][:rank])
+      if @user_type == 'student' && @student.save
+        redirect_to session_login_path, notice: 'Пользователь успешно создан'
+        return
+      else
+        render :new, status: :unprocessable_entity
+        @user.destroy
+        return
+      end
+      if @user_type == 'staff' && staff.save
+        redirect_to session_login_path, notice: 'Пользователь успешно создан'
+        return
+      else
+        render :new, status: :unprocessable_entity
+        @user.destroy
+        return
+      end
     else
       render :new, status: :unprocessable_entity
     end

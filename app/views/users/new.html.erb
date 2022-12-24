@@ -5,24 +5,26 @@
 <div class="row m-3">
     <div class="col-4">
         <%= form_with(model: @user, url: users_create_path) do |form| %>
-            <% if @user.errors.any? %>
-                <div style="color: red">
-                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-                    <ul>
-                      <% @user.errors.each do |error| %>
-                        <li><%= error.full_message %></li>
-                      <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
             <div class="mb-3">
+                <% if @user.errors[:login].any? %>
+                    <div style="color: red">
+                        <% @user.errors[:login].each do |error| %>
+                            <p><%= error %></p>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= form.label :login, 'Логин: ', class: 'form-label' %>
                 <%= form.text_field :login, class: 'form-control' %>
             </div>
 
             <div class="mb-3">
+                <% if @user.errors[:password].any? %>
+                    <div style="color: red">
+                        <% @user.errors[:password].each do |error| %>
+                            <p><%= error %></p>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= form.label :password, 'Пароль: ', class: 'form-label' %>
                 <%= form.password_field :password, class: 'form-control' %>
             </div>
@@ -33,16 +35,37 @@
             </div>
 
             <div class="mb-3">
+                <% if @user.errors[:name].any? %>
+                    <div style="color: red">
+                        <% @user.errors[:name].each do |error| %>
+                            <p><%= error %></p>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= form.label :name, 'Имя: ', class: 'form-label' %>
                 <%= form.text_field :name, class: 'form-control' %>
             </div>
 
             <div class="mb-3">
+                <% if @user.errors[:surname].any? %>
+                    <div style="color: red">
+                        <% @user.errors[:surname].each do |error| %>
+                            <p><%= error %></p>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= form.label :surname, 'Фамилия: ', class: 'form-label' %>
                 <%= form.text_field :surname, class: 'form-control' %>
             </div>
 
             <div class="mb-5">
+                <% if @user.errors[:second_name].any? %>
+                    <div style="color: red">
+                        <% @user.errors[:second_name].each do |error| %>
+                            <p><%= error %></p>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= form.label :second_name, 'Отчество: ', class: 'form-label' %>
                 <%= form.text_field :second_name, class: 'form-control' %>
             </div>
