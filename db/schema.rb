@@ -10,33 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_121502) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_093959) do
   create_table "council_members", force: :cascade do |t|
     t.integer "student_id"
     t.string "rank", null: false
     t.integer "floor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_council_members_on_student_id"
-  end
-
-  create_table "poll_answers", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "poll_id"
-    t.string "answers"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["poll_id"], name: "index_poll_answers_on_poll_id"
-    t.index ["student_id"], name: "index_poll_answers_on_student_id"
-  end
-
-  create_table "polls", force: :cascade do |t|
-    t.integer "council_member_id"
-    t.string "title", null: false
-    t.string "questions", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["council_member_id"], name: "index_polls_on_council_member_id"
+    t.index ["student_id"], name: "index_council_members_on_student_id", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -66,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_121502) do
     t.string "rank", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_staffs_on_user_id"
+    t.index ["user_id"], name: "index_staffs_on_user_id", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -74,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_121502) do
     t.integer "room", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_students_on_user_id"
+    t.index ["user_id"], name: "index_students_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,10 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_121502) do
     t.string "password_digest", null: false
     t.string "name", null: false
     t.string "surname", null: false
-    t.string "second_name", null: false
+    t.string "second_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["login"], name: "index_users_on_login", unique: true
   end
 
+  add_foreign_key "council_members", "students"
+  add_foreign_key "posts", "council_members"
+  add_foreign_key "requests", "staffs"
+  add_foreign_key "requests", "students"
+  add_foreign_key "staffs", "users"
+  add_foreign_key "students", "users"
 end
