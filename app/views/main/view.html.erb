@@ -1,23 +1,60 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">МоёОбщежитие</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to 'Главная', root_path, class: 'nav-link active' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Новости', posts_path, class: 'nav-link' %>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/forms">Опросы</a>
-          </li> -->
-        </ul>
-        <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">МоёОбщежитие</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to 'Главная' , root_path, class: 'nav-link active' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Новости' , posts_path, class: 'nav-link' %>
+                    </li>
+                </ul>
+                <%= link_to 'Личный кабинет' , '/users/' + @_current_user.login, class: 'btn btn-primary' %>
+            </div>
+        </div>
+    </nav>
 </header>
-<main></main>
-<footer>Тут будут контакты</footer>
+<main class="container mt-5">
+    <div class="row">
+        <%= image_tag 'main.jpg' %>
+    </div>
+    <div class="row">
+        <h1>Добро пожаловать!</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam est eius, velit tempora minus illo eaque
+            rem accusamus ea? Ea, veritatis dolorem vel repudiandae odio ducimus a quas fuga et.
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="fs-3" style="margin-left: 120px; margin-top: 120px;">
+                <h2>Наш адрес</h5>
+                    <p class="mt-2">Москва, Измайловский район</p>
+                    <p>6-я парковая, 2/73</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <script type="text/javascript" charset="utf-8" async
+                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac3b3b89b6e4e960d6d0cd695a4e3f2cc53a54247ef50106366e81c84a55b5cf9&amp;width=568&amp;height=463&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+    </div>
+</main>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top m-5">
+    <div class="col-md-4 d-flex align-items-center">
+        <span class="text-muted">© 2022 Davydov, Inc</span>
+    </div>
+
+    <ul class="nav col-md-3 justify-content-end list-unstyled d-flex">
+        <li class="ms-3">
+            Телефон +79991234567
+        </li>
+        <li class="ms-3">
+            Почта dormitory5bmstu@yandex.ru
+        </li>
+        <li class="ms-3">
+            Телеграм @dormitory5bmstu
+        </li>
+    </ul>
+</footer>
