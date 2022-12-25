@@ -10,11 +10,8 @@
                     <li class="nav-item">
                         <%= link_to 'Новости', posts_path, class: 'nav-link' %>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/forms">Опросы</a>
-                    </li> -->
                 </ul>
-                <%= link_to 'Личный кабинет', '/users/' + @_current_user.login, class: 'btn btn-primary' %>        
+                <%= link_to 'Личный кабинет', profile_path, class: 'btn btn-primary' %>        
             </div>
         </div>
     </nav>

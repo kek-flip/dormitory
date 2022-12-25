@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'users/new'
   post 'users/create'
-  get 'users/:login', to: 'users#show'
+  get 'profile', to: 'users#show'
 
   get 'session/login'
   post 'session/create'
