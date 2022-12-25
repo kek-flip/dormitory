@@ -18,11 +18,10 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    p post_params
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to post_url(@post), notice: "Post was successfully created."
+      redirect_to posts_path
     else
       render :new, status: :unprocessable_entity
     end
