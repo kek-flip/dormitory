@@ -63,6 +63,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'faker' # гем для генерирования случайных данных
+  gem 'shoulda-matchers' # гем для более простых записей тестов (будет использоваться в тестах модели)
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
