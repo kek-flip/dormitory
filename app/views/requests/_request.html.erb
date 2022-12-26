@@ -1,15 +1,15 @@
 <div id="<%= dom_id request %>">
-    <div class="row">
+    <div class="row" id="request">
         <div class="col-6">
-            <p>Этаж:  <%= request.floor%></p>
-            <p>Место: <%= request.location %></p>
-            <p>Проблема: <%= request.problem %></p>
+            <p id="request-floor">Этаж:  <%= request.floor%></p>
+            <p id="request-location">Место: <%= request.location %></p>
+            <p id="request-problem">Проблема: <%= request.problem %></p>
         </div>
         <div class="col-6">
             <div class="text-center">
-                <p><%= request.status %></p>
-                <%= link_to 'Редактировать', edit_request_path(request) %>
-                <%= button_to "Удалить заявку", request, method: :delete, class: 'btn btn-primary col-md-10 mt-2' %>
+                <p id="request-status"><%= request.status %></p>
+                <%= link_to 'Редактировать', edit_request_path(request), id: 'request-edit' %>
+                <%= button_to "Удалить заявку", request, method: :delete, class: 'btn btn-primary col-md-10 mt-2', id: 'request-delete' %>
             </div>
         </div>
     </div>

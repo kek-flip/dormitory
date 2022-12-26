@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
 
     if @request.save
-      redirect_to '/users/' + @_current_user.login
+      redirect_to profile_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1 or /requests/1.json
   def update
     if @request.update(request_params)
-      redirect_to '/users/' + @_current_user.login
+      redirect_to profile_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,17 +45,17 @@ class RequestsController < ApplicationController
   def destroy
     @request.destroy
 
-    redirect_to '/users/' + @_current_user.login
+    redirect_to profile_path
   end
 
   def update_status_to_took
     @request.update(status:'В работе')
-    redirect_to '/users/' + @_current_user.login
+    redirect_to profile_path
   end
 
   def update_status_to_finished
     @request.update(status:'Завершена')
-    redirect_to '/users/' + @_current_user.login
+    redirect_to profile_path
   end
 
   private

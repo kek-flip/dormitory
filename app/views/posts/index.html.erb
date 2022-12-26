@@ -32,6 +32,7 @@
 
                 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>
                     <p><%= link_to 'Редактировать', edit_post_path(post), class: 'col-1' %></p>
+                    <%= button_to "Удалить новость", post, method: :delete, class: 'btn btn-primary mb-2' %>
                 <% end %>
             </article>
         </div>

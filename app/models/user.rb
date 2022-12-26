@@ -10,7 +10,6 @@ class User < ApplicationRecord
   validates_presence_of :password, message: 'Пароль пользователя не должно быть пустым'
   validates_length_of :password, minimum: 6, message: 'Пароль должен быть 6 или более символов'
   validates_confirmation_of :password, message: 'Пароли различны'
-  validates_presence_of :password_confirmation, message: 'Повторите пароль'
   validates_each :password do |record, attr, value|
     record.errors.add(attr, message: 'Пароль должен содержать цифры') unless value =~ /\d/
     record.errors.add(attr, message: 'Пароль должен содержать строчные буквы') unless value =~ /[a-z]/
