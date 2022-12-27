@@ -12,7 +12,6 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:password).with_message('Пароль пользователя не должно быть пустым') }
     it { should validate_length_of(:password).with_message('Пароль должен быть 6 или более символов') }
     it { should validate_confirmation_of(:password).with_message('Пароли различны') }
-    it { should validate_presence_of(:password_confirmation).with_message('Повторите пароль') }
 
     it { should validate_presence_of(:name).with_message('Укажитие имя') }
     it { should validate_presence_of(:surname).with_message('Укажитие фамилию') }
