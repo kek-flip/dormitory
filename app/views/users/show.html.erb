@@ -15,6 +15,7 @@
             </div>
         </div>
     </nav>
+    <%= render "messages/show" if @_user_access != ApplicationController::STAFF %>
 </header>
 
 <div class="row mt-3 container">
@@ -25,6 +26,7 @@
         <p>Имя: <%= @_current_user.name %></p>
         <p>Отчество: <%= @_current_user.second_name %></p>
         <%= link_to 'Выйти', session_logout_path, class: 'btn btn-primary col-md-4' %>
+        <%= link_to 'Менеджер сообщений', messages_path, class: 'btn btn-primary' if @_user_access == ApplicationController::COUNCIL_MEMBER%>
     </div>
 
     <div class="col-5 border border-1">

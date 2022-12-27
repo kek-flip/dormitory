@@ -15,6 +15,7 @@
             </div>
         </div>
     </nav>
+    <%= render "messages/show" if @_user_access != ApplicationController::STAFF %>
 </header>
 
 <% if @_user_access == ApplicationController::COUNCIL_MEMBER %>

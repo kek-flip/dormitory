@@ -1,0 +1,34 @@
+<div class="row m-3">
+    <div class="col-4">
+        <%= form_with(model: message) do |form| %>
+            <% if message.errors.any? %>
+                <div style="color: red">
+                    <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+                    <ul>
+                        <% message.errors.each do |error| %>
+                            <li><%= error.full_message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="mb-3">
+                <%= form.label :title, 'Заголовок', class: 'form-label' %>
+                <%= form.text_field :title, class: 'form-control' %>
+            </div>
+
+            <div class="mb-3">
+                <%= form.label :text, 'Текст', class: 'form-label' %>
+                <%= form.text_field :text, class: 'form-control' %>
+            </div>
+
+            <div>
+                <%= form.submit value: 'Добавить', class: 'btn btn-primary col-md-6' %>
+            </div>
+        <% end %>
+        <div class="mt-5">
+            <%= link_to 'Назад', messages_path, class: 'btn btn-primary col-md-6'%>
+        </div>
+    </div>
+</div>

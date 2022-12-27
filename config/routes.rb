@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :requests, only: [ :edit, :update, :new, :create, :destroy ]
   get 'request/update/take', to: 'requests#update_status_to_took'
   get 'request/update/finish', to: 'requests#update_status_to_finished'
+
+  resources :messages
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
