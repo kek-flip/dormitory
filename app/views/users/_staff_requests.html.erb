@@ -1,0 +1,28 @@
+<h3 class="text-center">Заявки</h3>
+<% Request.all.each do |request| %>
+    <% if request.staff_id == @_current_user_role.id && request.status != 'Завершена' %>
+        <div class="row">
+            <div class="col-6">
+                <p>Этаж:  <%= request.floor%></p>
+                <p>Место: <%= request.location %></p>
+                <p>Проблема: <%= request.problem %></p>
+            </div>
+            <div class="col-6">
+                <div class="text-center mt-3">
+                    <% if request.status == 'Не рассмотрено' %>
+                        <%= form_with(url: request_update_take_path, method: :get) do |form| %>
+                            <input type="text" value="<%= request.id %>" name="id" style="visibility: hidden">
+                            <%= form.submit value: 'Взять', class: 'btn btn-primary' %>
+                        <% end %>
+                    <% end %>
+                    <% if request.status == 'В работе' %>
+                        <%= form_with(url: request_update_finish_path, method: :get) do |form| %>
+                            <input type="text" value="<%= request.id %>" name="id" style="visibility: hidden">
+                            <%= form.submit value: 'Завершить', class: 'btn btn-primary' %>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>

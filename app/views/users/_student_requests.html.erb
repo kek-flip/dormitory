@@ -1,0 +1,7 @@
+<h3 class="text-center">Мои заявки</h3>
+<%= link_to "Отправить заявку", new_request_path, class: 'btn btn-primary col-md-12' %>
+<% Request.all.each do |request| %>
+    <% if request.student_id == Student.find_by_user_id(@_current_user.id).id%>
+        <p><%= render request %></p>
+    <% end %>
+<% end %>
