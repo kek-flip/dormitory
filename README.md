@@ -1,24 +1,12 @@
-# README
+# Dormitory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my project that has been made for my dormitory in way to simplify working processes.
 
-Things you may want to cover:
+Via this web app council members and staff can interact with students in a comfortable and fast way.
+Every user has its own profile which include intruments to do their work:
 
-* Ruby version
+* Council members can write news and nessesary messages than will be seen by students
+* Staff can accept students` requests and manage status of thier prosessing
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*Ruby version 3.0.0*
+*Rails version 7.0.4*
