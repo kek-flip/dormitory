@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Users controller
 class UsersController < ApplicationController
   before_action :parse_user_type, only: :create
   skip_before_action :authenticate, only: %i[new create]
@@ -30,9 +31,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    
-  end
+  def show; end
 
   private
 

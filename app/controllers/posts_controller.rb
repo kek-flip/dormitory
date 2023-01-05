@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Posts controller
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :check_access, only: %i[ new create edit update ]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :check_access, only: %i[new create edit update]
 
   # GET /posts or /posts.json
   def index
@@ -13,8 +16,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts or /posts.json
   def create
@@ -43,17 +45,19 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.fetch(:post, {}).merge({council_member_id: @_current_user_role.id}).permit(:title, :text, :council_member_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def check_access
-      redirect_to posts_path, alert: 'Нет доступа' if @_user_access != ApplicationController::COUNCIL_MEMBER
-    end
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.fetch(:post, {}).merge({ council_member_id: @_current_user_role.id }).permit(:title, :text,
+                                                                                        :council_member_id)
+  end
+
+  def check_access
+    redirect_to posts_path, alert: 'Нет доступа' if @_user_access != ApplicationController::COUNCIL_MEMBER
+  end
 end

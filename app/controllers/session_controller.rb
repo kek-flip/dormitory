@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Sessions controller
 class SessionController < ApplicationController
   skip_before_action :authenticate, only: %i[login create]
 
